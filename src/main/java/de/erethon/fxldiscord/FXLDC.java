@@ -21,7 +21,9 @@ public final class FXLDC extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         plugin = this;
-        JDABuilder builder = JDABuilder.createDefault("TOKEN");
+        saveDefaultConfig();
+        String token = getConfig().getString("token");
+        JDABuilder builder = JDABuilder.createDefault(token);
         builder.setActivity(Activity.playing("DRE II"));
         builder.setEventManager(new AnnotatedEventManager());
         builder.addEventListeners(new JDAListener());
