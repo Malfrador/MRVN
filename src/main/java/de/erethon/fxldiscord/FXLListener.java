@@ -11,11 +11,12 @@ public class FXLListener implements Listener {
 
     FXLDC plugin = FXLDC.getPlugin();
     JDA jda = plugin.getJda();
+    String id = plugin.getConfig().getString("announcementChannelID");
 
 
     @EventHandler
     public void truceEvent(WarTruceEndEvent event) {
-        MessageChannel channel = jda.getTextChannelById("751229382474989748"); // 751229382474989748
+        MessageChannel channel = jda.getTextChannelById(id);
         String msg = "**[Krieg]** Der Waffenstillstand zwischen " + event.getAttacker().getName() + " und " + event.getDefender().getName() + " ist nun zu Ende.";
         boolean hasRole = false;
         String id = "";
@@ -34,7 +35,7 @@ public class FXLListener implements Listener {
 
     @EventHandler
     public void warDeclarationEvent(WarDeclarationEvent event) {
-        MessageChannel channel = jda.getTextChannelById("751229382474989748"); // 751229382474989748
+        MessageChannel channel = jda.getTextChannelById(id);
         String msg = "**[Krieg]** " + event.getAttacker().getName() + " hat " + event.getDefender().getName() + " einen " + event.getCasusBelli().getType() + "-Krieg erklärt!";
         boolean hasRole = false;
         String id = "";
@@ -53,14 +54,14 @@ public class FXLListener implements Listener {
 
     @EventHandler
     public void warEndEvent(WarEndEvent event) {
-        MessageChannel channel = jda.getTextChannelById("751229382474989748"); // 751229382474989748
+        MessageChannel channel = jda.getTextChannelById(id);
         String msg = "**[Krieg]** Der Krieg zwischen " + event.getAttacker().getName() + " und " + event.getDefender().getName() + " ist nun vorbei.";
         channel.sendMessage(msg).queue();
     }
 
     @EventHandler
     public void regionAttackEvent(WarRegionAttackEvent event) { // WarRegionAttackEvent
-        MessageChannel channel = jda.getTextChannelById("751229382474989748"); // 751229382474989748
+        MessageChannel channel = jda.getTextChannelById(id);
         String msg = "**[Regionen]** Die Region _" + event.getRegion().getName() + "_ (" + event.getRegion().getOwner().getName() + ") wird bald von " + event.getAttacker().getName() + " angegriffen!";
         boolean hasRole = false;
         String id = "";
@@ -79,7 +80,7 @@ public class FXLListener implements Listener {
 
     @EventHandler
     public void regionAttackEndEvent(WarRegionOccupiedEvent event) {
-        MessageChannel channel = jda.getTextChannelById("751229382474989748"); // 751229382474989748
+        MessageChannel channel = jda.getTextChannelById(id);
         String msg = "**[Regionen]** Die Region _" + event.getRegion().getName() + "_ wurde von " + event.getOccupant().getName() + " besetzt.";
         channel.sendMessage(msg).queue();
     }
