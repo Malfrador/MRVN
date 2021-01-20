@@ -13,7 +13,6 @@ public class FXLListener implements Listener {
     JDA jda = plugin.getJda();
     String id = plugin.getConfig().getString("announcementChannelID");
 
-
     @EventHandler
     public void truceEvent(WarTruceEndEvent event) {
         MessageChannel channel = jda.getTextChannelById(id);
@@ -83,6 +82,11 @@ public class FXLListener implements Listener {
         MessageChannel channel = jda.getTextChannelById(id);
         String msg = "**[Regionen]** Die Region _" + event.getRegion().getName() + "_ wurde von " + event.getOccupant().getName() + " besetzt.";
         channel.sendMessage(msg).queue();
+    }
+
+    @EventHandler
+    public void joinEvent(FPlayerFactionJoinEvent event) {
+        plugin.getLink().updateFactions(event.getFPlayer().getPlayer());
     }
 
 

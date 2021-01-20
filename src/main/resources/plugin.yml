@@ -2,3 +2,7 @@ name: FXLDC
 version: ${project.version}
 main: de.erethon.fxldiscord.FXLDC
 api-version: 1.16
+commands:
+  discord:
+    description: Discord link
+    usage: /discord [Tag]
